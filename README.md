@@ -6,3 +6,4 @@
 * env
 * md
 * intl
+* styled-components

@@ -11,8 +11,6 @@ export const exampleInitialState = {
 
 function reducer (exampleInitialState, action) {
   const state = fromJS(exampleInitialState)
-  // console.log(state)
-  // debugger
 
   switch (action.type) {
     // case actionTypes.FAILURE:
@@ -22,22 +20,14 @@ function reducer (exampleInitialState, action) {
     //   }
 
     case actionTypes.INCREMENT:
-      return {
-        ...state,
-        ...{count: state.count + 1}
-      }
-      // return state.merge({
-      //   count: state.get('count') + 1,
-      // })
+      return state.merge({
+        count: state.get('count') + 1,
+      })
 
     case actionTypes.DECREMENT:
-      return {
-        ...state,
-        ...{count: state.count - 1}
-      }
-      // return state.merge({
-      //   count: state.get('count') - 1,
-      // })
+      return state.merge({
+        count: state.get('count') - 1,
+      })
 
     case actionTypes.RESET:
       return {

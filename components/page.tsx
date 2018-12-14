@@ -2,18 +2,34 @@ import Link from 'next/link'
 import { connect } from 'react-redux'
 // import { Map } from 'immutable'
 import React from 'react'
+import Counter from './counter'
 
-class Page extends React.Component<any, any> {
+interface Props {
+  NavigateTo: string,
+  count: number,
+  dispatch: Function,
+  error: boolean,
+  lastUpdate: number,
+  light: boolean,
+  linkTo: string,
+  placeholderData: any,
+  title: string,
+}
+
+class Page extends React.Component<Props, any> {
   render () {
-    debugger
+    const {
+      title,
+      count,
+      dispatch,
+    } = this.props
 
     return (
       <div>
-        <h1>
-          {this.props.title}
-        </h1>
+        <h1>{title}</h1>
 
-        {/* <Counter /> */}
+        <Counter count={count} dispatch={dispatch}
+        />
       </div>
     )
   }
