@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {startClock, tickClock} from '../saga/actions'
+import {startClock, tickClock} from '@/saga/actions'
 import Page from '../components/page'
 
 interface Props {
@@ -15,9 +15,9 @@ class Other extends React.Component<Props, {}> {
     return { isServer }
   }
 
-  componentDidMount () {
-    this.props.dispatch(startClock())
-  }
+  // componentDidMount () {
+  //   this.props.dispatch(startClock())
+  // }
 
   render () {
     return <Page title='Other Page' linkTo='/' NavigateTo='Index Page' />

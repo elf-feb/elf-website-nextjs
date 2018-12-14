@@ -1,6 +1,7 @@
 import React from 'react'
 // import Link from 'next/link'
 import { connect } from 'react-redux'
+import isNull from 'lodash/isNull'
 
 import { loadData, startClock, tickClock } from '@/saga/actions'
 import Page from '../components/page'
@@ -12,12 +13,11 @@ interface Props {
 class Index extends React.Component<Props, {}> {
   static async getInitialProps(props) {
     const { store, isServer } = props.ctx
-
-    // store.dispatch(tickClock(isServer))
-    // if (!store.getState().placeholderData) {
-    //   store.dispatch(loadData())
-    // }
-
+    store.dispatch(tickClock(isServer))
+    if (isNull(store.getState().get('placeholderData'))) {
+      debugger
+      store.dispatch(loadData())
+    }
     return { isServer }
   }
 

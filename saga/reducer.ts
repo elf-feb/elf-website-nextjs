@@ -1,5 +1,5 @@
+import { fromJS } from 'immutable'
 import {actionTypes} from './actions'
-import { Map, fromJS } from 'immutable'
 
 export const exampleInitialState = {
   count: 0,
@@ -9,7 +9,15 @@ export const exampleInitialState = {
   placeholderData: null
 }
 
-function reducer (exampleInitialState, action) {
+type Action = {
+  type: string,
+  light?: boolean,
+  ts?: number,
+  data?: Array<any>,
+  error?: boolean,
+}
+
+function reducer (exampleInitialState, action: Action) {
   const state = fromJS(exampleInitialState)
 
   switch (action.type) {
@@ -28,20 +36,21 @@ function reducer (exampleInitialState, action) {
         count: 0,
       })
 
-    // case actionTypes.LOAD_DATA_SUCCESS:
-    //   return {
-    //     ...state,
-    //     ...{placeholderData: action.data}
-    //   }
+    case actionTypes.TICK_CLOCK:
+      return state.merge({
+        lastUpdate: action.ts,
+        light: !!action.light,
+      })
 
-    // case actionTypes.TICK_CLOCK:
-    //   return {
-    //     ...state,
-    //     ...{
-    //       lastUpdate: action.ts,
-    //       light: !!action.light,
-    //     }
-    //   }
+    case actionTypes.LOAD_DATA_SUCCESS:
+      return state.merge({
+        placeholderData: action.data,
+      })
+
+    case actionTypes.FAILURE:
+      return state.merge({
+        error: action.error,
+      })
 
     default:
       return state

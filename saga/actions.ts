@@ -9,13 +9,6 @@ export const actionTypes = {
   TICK_CLOCK: 'TICK_CLOCK'
 }
 
-export function failure (error) {
-  return {
-    type: actionTypes.FAILURE,
-    error
-  }
-}
-
 export function increment () {
   return {type: actionTypes.INCREMENT}
 }
@@ -28,25 +21,24 @@ export function reset () {
   return {type: actionTypes.RESET}
 }
 
-export function loadData () {
-  return {type: actionTypes.LOAD_DATA}
-}
-
-export function loadDataSuccess (data) {
-  return {
-    type: actionTypes.LOAD_DATA_SUCCESS,
-    data
-  }
-}
-
 export function startClock () {
   return {type: actionTypes.START_CLOCK}
 }
 
-export function tickClock (isServer) {
-  return {
-    type: actionTypes.TICK_CLOCK,
-    light: !isServer,
-    ts: Date.now()
-  }
-}
+export const tickClock = (isServer: boolean) => ({
+  type: actionTypes.TICK_CLOCK,
+  light: !isServer,
+  ts: Date.now(),
+})
+
+export const loadData = () => ({ type: actionTypes.LOAD_DATA })
+
+export const loadDataSuccess = (data: Array<any>) => ({
+  type: actionTypes.LOAD_DATA_SUCCESS,
+  data,
+})
+
+export const failure = (error: boolean) => ({
+  type: actionTypes.FAILURE,
+  error,
+})

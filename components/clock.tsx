@@ -9,11 +9,15 @@ const format = t => {
   return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`
 }
 
-function Clock ({lastUpdate, light}) {
-  return (
-    <div className={light ? 'light' : ''}>
-      {format(new Date(lastUpdate))}
-      <style jsx>{`
+interface Props {
+  lastUpdate: number,
+  light: boolean,
+}
+
+export default ({ lastUpdate, light }: Props) =>
+  <div className={light ? 'light' : ''}>
+    {format(new Date(lastUpdate))}
+    <style jsx>{`
         div {
           padding: 15px;
           display: inline-block;
@@ -25,8 +29,5 @@ function Clock ({lastUpdate, light}) {
           background-color: #999;
         }
       `}</style>
-    </div>
-  )
-}
+  </div>
 
-export default Clock

@@ -31,6 +31,7 @@
   "devDependencies": {
     "@types/next": "^7.0.5",
     "@types/react": "^16.7.13",
+    "lodash": "^4.17.11",
     "nodemon": "^1.18.7",
     "path": "^0.12.7",
     "redux-devtools-extension": "^2.13.7",
