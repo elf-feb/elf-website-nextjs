@@ -1,32 +1,31 @@
 import React from 'react'
-// import Link from 'next/link'
-import { connect } from 'react-redux'
 import isNull from 'lodash/isNull'
+import { connect } from 'react-redux'
 
+import { InitProps } from 'types'
 import { loadData, startClock, tickClock } from '@/saga/actions'
-import Page from '../components/page'
+import Page from '@/components/page'
 
 interface Props {
   dispatch: Function,
 }
 
 class Index extends React.Component<Props, {}> {
-  static async getInitialProps(props) {
-    const { store, isServer } = props.ctx
+  static async getInitialProps(initProps: InitProps) {
+    const { store, isServer } = initProps.ctx
     store.dispatch(tickClock(isServer))
     if (isNull(store.getState().get('placeholderData'))) {
-      debugger
       store.dispatch(loadData())
     }
     return { isServer }
   }
 
-  // componentDidMount() {
-  //   this.props.dispatch(startClock())
-  // }
+  componentDidMount() {
+    this.props.dispatch(startClock())
+  }
 
   render() {
-    return <Page title='Index Page' linkTo='/other' NavigateTo='Other Page' />
+    return <Page title="Index Page" linkTo="/other" NavigateTo="Other Page" />
   }
 }
 

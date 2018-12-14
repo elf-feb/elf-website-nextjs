@@ -1,20 +1,21 @@
 import Link from 'next/link'
 import { connect } from 'react-redux'
-// import { Map } from 'immutable'
 import React from 'react'
+import { Map } from 'immutable'
+
 import Counter from './counter'
-import isObject from 'lodash/isObject'
+import Clock from './clock'
 
 interface Props {
-  NavigateTo: string,
-  count: number,
-  dispatch: Function,
-  error: boolean | any, // { message: string }
-  lastUpdate: number,
-  light: boolean,
-  linkTo: string,
-  placeholderData: any,
   title: string,
+  linkTo: string,
+  NavigateTo: string,
+  count?: number,
+  error?: boolean | any, // { message: string }
+  light?: boolean,
+  dispatch?: Function,
+  lastUpdate?: number,
+  placeholderData?: any,
 }
 
 class Page extends React.Component<Props, any> {
@@ -23,15 +24,18 @@ class Page extends React.Component<Props, any> {
       error,
       title,
       count,
+      light,
       linkTo,
       dispatch,
       NavigateTo,
+      lastUpdate,
       placeholderData,
     } = this.props
 
     return (
       <div>
         <h1>{title}</h1>
+        <Clock lastUpdate={lastUpdate} light={light} />
         <Counter count={count} dispatch={dispatch} />
 
         <nav>
@@ -56,4 +60,4 @@ class Page extends React.Component<Props, any> {
   }
 }
 
-export default connect(state => state.toJS())(Page)
+export default connect((state: Map<any, any>) => state.toJS())(Page)

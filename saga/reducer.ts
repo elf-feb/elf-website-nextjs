@@ -1,14 +1,6 @@
 import { fromJS } from 'immutable'
 import {actionTypes} from './actions'
 
-export const exampleInitialState = {
-  count: 0,
-  error: false,
-  lastUpdate: 0,
-  light: false,
-  placeholderData: null
-}
-
 type Action = {
   type: string,
   light?: boolean,
@@ -17,7 +9,15 @@ type Action = {
   error?: boolean,
 }
 
-function reducer (exampleInitialState, action: Action) {
+export const exampleInitialState = {
+  count: 0,
+  error: false,
+  lastUpdate: 0,
+  light: false,
+  placeholderData: null
+}
+
+export default (exampleInitialState, action: Action) => {
   const state = fromJS(exampleInitialState)
 
   switch (action.type) {
@@ -56,5 +56,3 @@ function reducer (exampleInitialState, action: Action) {
       return state
   }
 }
-
-export default reducer
