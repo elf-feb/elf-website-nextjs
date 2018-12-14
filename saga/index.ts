@@ -17,20 +17,20 @@ function * runClockSaga () {
   }
 }
 
-function * loadDataSaga () {
-  try {
-    const res = yield fetch('https://jsonplaceholder.typicode.com/users')
-    const data = yield res.json()
-    yield put(loadDataSuccess(data))
-  } catch (err) {
-    yield put(failure(err))
-  }
-}
+// function * loadDataSaga () {
+//   try {
+//     const res = yield fetch('https://jsonplaceholder.typicode.com/users')
+//     const data = yield res.json()
+//     yield put(loadDataSuccess(data))
+//   } catch (err) {
+//     yield put(failure(err))
+//   }
+// }
 
 function * rootSaga () {
   yield all([
     call(runClockSaga),
-    takeLatest(actionTypes.LOAD_DATA, loadDataSaga)
+    // takeLatest(actionTypes.LOAD_DATA, loadDataSaga)
   ])
 }
 
