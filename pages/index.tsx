@@ -2,7 +2,7 @@ import React from 'react'
 // import Link from 'next/link'
 import { connect } from 'react-redux'
 
-import { loadData, startClock, tickClock } from '../saga/actions'
+import { loadData, startClock, tickClock } from '@/saga/actions'
 import Page from '../components/page'
 
 interface Props {

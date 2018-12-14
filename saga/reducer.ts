@@ -13,12 +13,6 @@ function reducer (exampleInitialState, action) {
   const state = fromJS(exampleInitialState)
 
   switch (action.type) {
-    // case actionTypes.FAILURE:
-    //   return {
-    //     ...state,
-    //     ...{error: action.error}
-    //   }
-
     case actionTypes.INCREMENT:
       return state.merge({
         count: state.get('count') + 1,
@@ -30,13 +24,9 @@ function reducer (exampleInitialState, action) {
       })
 
     case actionTypes.RESET:
-      return {
-        ...state,
-        ...{count: exampleInitialState.count}
-      }
-      // return state.merge({
-      //   count: exampleInitialState.get('count'),
-      // })
+      return state.merge({
+        count: 0,
+      })
 
     // case actionTypes.LOAD_DATA_SUCCESS:
     //   return {

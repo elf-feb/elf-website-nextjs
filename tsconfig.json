@@ -17,6 +17,9 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
+    "paths": {
+      "@/*": ["./*"]
+    },
     "lib": [
       "dom",
       "es2015",

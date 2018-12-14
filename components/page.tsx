@@ -21,15 +21,21 @@ class Page extends React.Component<Props, any> {
     const {
       title,
       count,
+      linkTo,
       dispatch,
+      NavigateTo,
     } = this.props
 
     return (
       <div>
         <h1>{title}</h1>
+        <Counter count={count} dispatch={dispatch} />
 
-        <Counter count={count} dispatch={dispatch}
-        />
+        <nav>
+          <Link href={linkTo}>
+            <a> Navigate: {NavigateTo} </a>
+          </Link>
+        </nav>
       </div>
     )
   }
