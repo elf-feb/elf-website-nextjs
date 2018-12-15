@@ -9,10 +9,12 @@ yarn dev
 ```
 
 ## TODO
-* saga
-* immutable
+* saga ---> success
+* immutable ---> success
 * env
 * md
 * intl
 * styled-components
 * fetch cancel requests
+* hapijs
+* header
