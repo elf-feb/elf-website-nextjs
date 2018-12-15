@@ -1,5 +1,5 @@
 {
-  "name": "next-hapi-saga",
+  "name": "nextjs-hapi-saga",
   "version": "0.0.1",
   "description": "nextjs 模版: nextjs + typescript + jest + redux-saga",
   "main": "index.js",

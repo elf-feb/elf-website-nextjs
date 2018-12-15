@@ -25,7 +25,7 @@ export const loadDataSuccess = (data: Array<any>) => ({
   data,
 })
 
-export const failure = (error: boolean) => ({
+export const failure = (error: any) => ({
   type: actionTypes.FAILURE,
   error,
 })
