@@ -1,6 +1,6 @@
-# 项目
+# nextjs-typescript-hapi-saga-immutable
 
-## 运行
+## RUN
 ```bash
 yarn install
 yarn dev
@@ -18,3 +18,6 @@ yarn dev
 * fetch cancel requests
 * hapijs
 * header
+* pm2.json
+
+
