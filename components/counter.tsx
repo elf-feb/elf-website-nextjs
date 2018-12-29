@@ -2,11 +2,11 @@
  * @Author: yanxiaodi 929213769@qq.com
  * @Date: 2018-12-07 23:04:32
  * @LastEditors: yanxiaodi 929213769@qq.com
- * @LastEditTime: 2018-12-14 19:15:25
+ * @LastEditTime: 2018-12-29 19:16:18
  * @Description: Class => Function
  */
 import React from 'react'
-import {increment, decrement, reset} from '@/saga/actions'
+import { increment, decrement, reset } from '@/saga/actions'
 
 interface Props {
   count: number,

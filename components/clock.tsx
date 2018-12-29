@@ -30,4 +30,3 @@ export default ({ lastUpdate, light }: Props) =>
         }
       `}</style>
   </div>
-
