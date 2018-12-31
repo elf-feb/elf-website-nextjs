@@ -11,13 +11,12 @@ yarn dev
 ## TODO
 * saga ---> success
 * immutable ---> success
+* tslint ---> success
+* intl
 * env
 * md
-* intl
 * styled-components
 * fetch cancel requests
 * hapijs
 * header
 * pm2.json
-
-

@@ -1,6 +1,8 @@
 {
-  "watch": ["server/**/*.ts"],
+  "restartable": "rs",
+  "verbose": false,
+  "watch": ["server/**/*.js"],
   "execMap": {
-    "ts": "ts-node --typeCheck --compilerOptions '{\"module\":\"commonjs\"}'"
+    "ts": "NODE_OPTIONS=--inspect ts-node --typeCheck --compilerOptions '{\"module\":\"commonjs\"}'"
   }
 }

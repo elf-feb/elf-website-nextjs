@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { connect } from 'react-redux'
 import React from 'react'
 import { Map } from 'immutable'
+import _ from 'lodash'
 
 import Counter from './counter'
 import Clock from './clock'

@@ -1,6 +1,7 @@
 import React from 'react'
 import isNull from 'lodash/isNull'
 import { connect } from 'react-redux'
+import intl from 'react-intl-universal'
 
 import { InitProps } from 'types'
 import { loadData, startClock, tickClock } from '@/saga/actions'
@@ -8,6 +9,9 @@ import Page from '@/components/page'
 
 interface Props {
   dispatch: Function,
+  intl: any,
+  simple: string,
+  hello: string,
 }
 
 class Index extends React.Component<Props, {}> {
@@ -17,7 +21,12 @@ class Index extends React.Component<Props, {}> {
     if (isNull(store.getState().get('placeholderData'))) {
       store.dispatch(loadData())
     }
-    return { isServer }
+    return {
+      isServer,
+      intl,
+      simple: intl.get('SIMPLE'),
+      hello: intl.get('HELLO', { name: 'Tony', where: 'Alibaba' }),
+    }
   }
 
   componentDidMount() {
@@ -25,7 +34,18 @@ class Index extends React.Component<Props, {}> {
   }
 
   render() {
-    return <Page title="Index Page" linkTo="/other" NavigateTo="Other Page" />
+    return (
+      <div>
+        {/* <div>{this.props.intl.get('SIMPLE')}</div> */}
+        <div>{this.props.hello}</div>
+
+        <Page
+          title="Index Page"
+          linkTo="/other"
+          NavigateTo="Other Page"
+        />
+      </div>
+    )
   }
 }
 
