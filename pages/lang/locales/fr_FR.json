@@ -1,0 +1,4 @@
+{
+  "SIMPLE": "phrase simple",
+  "HELLO": "Bonjour, {name}. Bienvenue chez {where}!"
+}

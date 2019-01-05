@@ -1,12 +1,16 @@
 import React from 'react'
 import intl from 'react-intl-universal'
+import _ from 'lodash'
+import http from "axios"
 import App, { Container } from 'next/app'
+
 import { Provider } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 import IntlPolyfill from "intl"
 
 import createStore from '../saga/store'
+import checkLocales from '@/utils/checkLocales'
 
 // For Node.js, common locales should be added in the application
 global.Intl = IntlPolyfill
@@ -40,15 +44,13 @@ class MyApp extends App {
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx })
     }
-
-    const currentLocale = SUPPOER_LOCALES[1].value // Determine user's locale here
+    const currentLocale = checkLocales(ctx.req.headers.host) // Determine user's locale here
     intl.init({
       currentLocale,
       locales: {
-        [currentLocale]: require(`../locales/${currentLocale}`)
+        [currentLocale]: require(`../static/locales/${currentLocale}`)
       }
     })
-
     return { pageProps }
   }
 
