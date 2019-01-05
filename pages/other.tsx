@@ -1,12 +1,12 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import _ from 'lodash'
 import { InitProps } from 'types'
-import {startClock, tickClock} from '@/saga/actions'
+import { startClock, tickClock } from '@/saga/actions'
 import Page from '@/components/page'
-
-import http from 'axios'
-import intl from 'react-intl-universal'
 import checkLocales from '@/utils/checkLocales'
+import loadLocales from '@/utils/loadLocales'
+import getLocalesText from '@/utils/getLocalesText'
 
 interface Props {
   dispatch: Function,
@@ -17,33 +17,17 @@ class Other extends React.Component<Props, {}> {
   static async getInitialProps (initProps: InitProps) {
     const { store, isServer, req } = initProps.ctx
     store.dispatch(tickClock(isServer))
+    // console.log('req ===> ', req)
+    // debugger
     return {
       isServer,
-      locales: checkLocales(req.headers.host),
+      locales: checkLocales(req),
     }
   }
 
   constructor(props: Props) {
     super(props)
-    this.loadLocales()
-  }
-
-  loadLocales() {
-    let currentLocale = this.props.locales
-    http
-      .get(`../static/locales/${currentLocale}.json`)
-      .then(res => {
-        console.log("App locale data", res.data)
-        return intl.init({
-          currentLocale,
-          locales: {
-            [currentLocale]: res.data
-          }
-        })
-      })
-      .then(() => {
-        this.setState({ initDone: true })
-      })
+    loadLocales(this.props.locales, this)
   }
 
   componentDidMount () {
@@ -53,7 +37,10 @@ class Other extends React.Component<Props, {}> {
   render () {
     return (
       <div>
-        <div>{intl.get('HELLO', { name: 'Tony', where: 'Alibaba' })}</div>
+        {/* <div>{intl.get()}</div> */}
+        <div>
+          {getLocalesText('HELLO', { name: 'Tony', where: 'Alibaba' })}
+        </div>
         <Page title="Other Page" linkTo="/" NavigateTo="Index Page" />
       </div>
     )

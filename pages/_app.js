@@ -44,7 +44,7 @@ class MyApp extends App {
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx })
     }
-    const currentLocale = checkLocales(ctx.req.headers.host) // Determine user's locale here
+    const currentLocale = checkLocales(ctx.req) // Determine user's locale here
     intl.init({
       currentLocale,
       locales: {

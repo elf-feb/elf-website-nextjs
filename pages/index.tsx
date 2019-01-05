@@ -1,14 +1,14 @@
 import React from 'react'
 import isNull from 'lodash/isNull'
-import http from 'axios'
 import { connect } from 'react-redux'
-import intl from 'react-intl-universal'
-import _ from 'lodash'
+// import intl from 'react-intl-universal'
 
 import { InitProps } from 'types'
 import checkLocales from '@/utils/checkLocales'
 import { loadData, startClock, tickClock } from '@/saga/actions'
 import Page from '@/components/page'
+import loadLocales from '@/utils/loadLocales'
+import getLocalesText from '@/utils/getLocalesText'
 
 interface Props {
   dispatch: Function,
@@ -24,51 +24,27 @@ class Index extends React.Component<Props, {}> {
     if (isNull(store.getState().get('placeholderData'))) {
       store.dispatch(loadData())
     }
+    // console.log('req ===> ', req)
+    // debugger
     return {
       isServer,
-      locales: checkLocales(req.headers.host),
+      locales: checkLocales(req),
     }
   }
 
   constructor (props: Props) {
     super(props)
-    this.loadLocales()
+    loadLocales(this.props.locales, this)
   }
 
   componentDidMount() {
     this.props.dispatch(startClock())
   }
 
-  loadLocales() {
-    // let currentLocale = intl.determineLocale({
-    //   urlLocaleKey: 'lang',
-    //   cookieLocaleKey: 'lang',
-    // })
-    let currentLocale = this.props.locales
-    http
-      .get(`../static/locales/${currentLocale}.json`)
-      .then(res => {
-        console.log("App locale data", res.data)
-        // init method will load CLDR locale data according to currentLocale
-        return intl.init({
-          currentLocale,
-          locales: {
-            [currentLocale]: res.data
-          }
-        })
-      })
-      .then(() => {
-        // After loading CLDR locale data, start to render
-        this.setState({ initDone: true })
-      })
-  }
-
   render() {
-    // console.log('isServer ===> ', this.props.isServer)
-    // debugger
     return (
       <div>
-        <div>{intl.get('SIMPLE') || ''}</div>
+        <div>{getLocalesText('SIMPLE')}</div>
         <Page
           title="Index Page"
           linkTo="/other"
