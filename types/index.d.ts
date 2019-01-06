@@ -4,6 +4,7 @@ export interface InitProps {
     isServer: boolean,
     pathname: string,
     query: any,
+    req: any,
     store: {
       dispatch: Function,
       getState: Function,

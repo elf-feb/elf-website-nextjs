@@ -1,0 +1,5 @@
+{
+  "title": "nextjs 多语言 例子",
+  "description": "将 React Intl与Next.js集成的示例应用程序",
+  "greeting": "你好!"
+}
