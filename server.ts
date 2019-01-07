@@ -18,7 +18,7 @@ const app = next({dev})
 const handle = app.getRequestHandler()
 
 // 通过查找`lang /`dir中的翻译来获取支持的语言
-const supportedLanguages = glob.sync('./lang/*.json').map((f) => basename(f, '.json'))
+const supportedLanguages = glob.sync('../../static/lang/*.json').map((f) => basename(f, '.json'))
 
 // 我们需要在用户请求中公开React Intl的语言环境数据
 // locale。 此函数还将通过lang在内存中缓存脚本
@@ -37,7 +37,7 @@ const getLocaleDataScript = (locale) => {
 // locale。 这些只会在生产中使用，在dev中使用`defaultMessage`
 // 将使用源代码中的每个消息描述
 const getMessages = (locale) => {
-  return require(`./lang/${locale}.json`)
+  return require(`../../static/lang/${locale}.json`)
 }
 
 const checkLocales = (req) => {
@@ -58,7 +58,7 @@ const checkLocales = (req) => {
 
 app.prepare().then(() => {
   createServer((req, res) => {
-    const accept = accepts(req)
+    // const accept = accepts(req)
     // const locale = accept.language(accept.languages(supportedLanguages)) || 'en'
     // const locale = 'fr'
     const locale = checkLocales(req)
