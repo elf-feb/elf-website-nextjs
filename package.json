@@ -18,5 +18,8 @@
     "react-dom": "^16.0.0",
     "react-intl": "^2.2.3"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "prop-types": "^15.6.2"
+  }
 }
