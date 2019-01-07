@@ -21,7 +21,7 @@
         [
           "react-intl",
           {
-            "messagesDir": "lang/.messages/"
+            "messagesDir": "static/lang/.messages/"
           }
         ]
       ]
@@ -42,7 +42,7 @@
         [
           "react-intl",
           {
-            "messagesDir": "lang/.messages/"
+            "messagesDir": "static/lang/.messages/"
           }
         ]
       ]

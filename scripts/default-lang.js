@@ -2,7 +2,7 @@ const {readFileSync, writeFileSync} = require('fs')
 const {resolve} = require('path')
 const glob = require('glob')
 
-const defaultMessages = glob.sync('./lang/.messages/**/*.json')
+const defaultMessages = glob.sync('./static/lang/.messages/**/*.json')
   .map((filename) => readFileSync(filename, 'utf8'))
   .map((file) => JSON.parse(file))
   .reduce((messages, descriptors) => {
@@ -15,5 +15,5 @@ const defaultMessages = glob.sync('./lang/.messages/**/*.json')
     return messages
   }, {})
 
-writeFileSync('./lang/en.json', JSON.stringify(defaultMessages, null, 2))
-console.log(`> Wrote default messages to: "${resolve('./lang/en.json')}"`)
+writeFileSync('./static/lang/en.json', JSON.stringify(defaultMessages, null, 2))
+console.log(`> Wrote default messages to: "${resolve('./static/lang/en.json')}"`)
