@@ -6,7 +6,7 @@
   "author": "didilinkin <929213769@qq.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "nodemon server/index.ts",
     "build": "next build && node ./scripts/default-lang && tsc --project tsconfig.server.json",
     "start": "NODE_ENV=production node .next/production-server"
   },

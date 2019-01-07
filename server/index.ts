@@ -40,13 +40,16 @@ const getMessages = (locale) => {
   return require(`../../static/lang/${locale}.json`)
 }
 
-const checkLocales = (req) => {
-  if (_.hasIn(req, 'headers.host') && _.get(req, 'headers.host') !== '') {
+const checkLocales = (req: any): string => {
+  if (
+    _.hasIn(req, 'headers.host') &&
+    _.get(req, 'headers.host') !== '' &&
+    !dev
+  ) {
     console.log(
       'locales ===> ',
       _.get(req, 'headers.host'),
     )
-    // debugger
     const locales = _.get(req, 'headers.host')
     if (locales.indexOf('zh') !== -1) { return 'zh' }
     if (locales.indexOf('en') !== -1) { return 'en' }
@@ -60,7 +63,8 @@ app.prepare().then(() => {
   createServer((req, res) => {
     // const accept = accepts(req)
     // const locale = accept.language(accept.languages(supportedLanguages)) || 'en'
-    // const locale = 'fr'
+
+    // 通过 host 判断 => 切换语言
     const locale = checkLocales(req)
     req.locale = locale
     req.localeDataScript = getLocaleDataScript(locale)
