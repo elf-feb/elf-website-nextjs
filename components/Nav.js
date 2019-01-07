@@ -1,12 +1,5 @@
-/*
- * @Author: yanxiaodi 929213769@qq.com
- * @Date: 2019-01-06 22:24:14
- * @LastEditors: yanxiaodi 929213769@qq.com
- * @LastEditTime: 2019-01-06 22:24:18
- * @Description:
- */
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
+import {FormattedMessage} from 'react-intl'
 import Link from 'next/link'
 
 export default () => (
