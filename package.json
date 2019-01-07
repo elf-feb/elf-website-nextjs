@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build && node ./scripts/default-lang && tsc --project tsconfig.server.json",
-    "start": "NODE_ENV=production node .next/production-server/server.js"
+    "start": "NODE_ENV=production node .next/production-server"
   },
   "dependencies": {
     "@babel/core": "^7.2.2",

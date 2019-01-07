@@ -5,16 +5,16 @@ const IntlPolyfill = require('intl')
 Intl.NumberFormat = IntlPolyfill.NumberFormat
 Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat
 
-const {readFileSync} = require('fs')
-const {basename} = require('path')
-const {createServer} = require('http')
+const { readFileSync } = require('fs')
+const { basename } = require('path')
+const { createServer } = require('http')
 const accepts = require('accepts')
 const glob = require('glob')
 const next = require('next')
 
 const port = parseInt(process.env.PORT, 10) || 3001
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({dev})
+const app = next({ dev })
 const handle = app.getRequestHandler()
 
 // 通过查找`lang /`dir中的翻译来获取支持的语言
