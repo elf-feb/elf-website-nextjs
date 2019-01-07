@@ -1,6 +1,10 @@
 {
-  "name": "with-react-intl",
-  "version": "1.0.0",
+  "name": "nextjs-hapi-saga",
+  "version": "0.0.1",
+  "description": "nextjs 模版: nextjs + typescript + jest + redux-saga",
+  "main": "index.js",
+  "author": "didilinkin <929213769@qq.com>",
+  "license": "MIT",
   "scripts": {
     "dev": "node server.js",
     "build": "next build && node ./scripts/default-lang",
@@ -18,7 +22,6 @@
     "react-dom": "^16.0.0",
     "react-intl": "^2.2.3"
   },
-  "license": "ISC",
   "devDependencies": {
     "prop-types": "^15.6.2"
   }
