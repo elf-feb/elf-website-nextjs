@@ -32,16 +32,24 @@ class MyApp extends App {
   }
 
   render () {
-    const { Component, pageProps, locale, messages, initialNow } = this.props
+    const { Component, pageProps, locale, messages, initialNow, store } = this.props
+
+    // console.log(this.props)
+    // debugger
 
     return (
       <Container>
-        <IntlProvider locale={locale} messages={messages} initialNow={initialNow}>
-          <Component {...pageProps} />
-        </IntlProvider>
+        <Provider store={store}>
+          <IntlProvider locale={locale} messages={messages} initialNow={initialNow}>
+            <Component {...pageProps} />
+          </IntlProvider>
+        </Provider>
       </Container>
     )
   }
 }
 
-export default MyApp
+export default withRedux(createStore)(
+  withReduxSaga({ async: true })
+    (MyApp)
+)
