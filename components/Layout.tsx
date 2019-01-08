@@ -16,11 +16,9 @@ export default injectIntl(({intl, title, children}) => (
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <title>{title || intl.formatMessage(messages.title)}</title>
     </Head>
-
     <header>
       <Nav />
     </header>
-
     {children}
 
   </div>
