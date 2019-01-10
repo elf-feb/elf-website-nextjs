@@ -19,6 +19,7 @@ yarn dev
 * hapijs
 * header
 * pm2.json
+* try / catch & React Error Boundary
 
 ## *intl 国际化 方案*
 
