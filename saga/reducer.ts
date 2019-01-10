@@ -3,6 +3,7 @@ import { actionTypes } from './actions'
 
 type Action = {
   type: string,
+  lang: 'en' | 'fr' | 'zh' | 'ja',
   light?: boolean,
   ts?: number,
   data?: Array<any>,
@@ -14,7 +15,8 @@ export const exampleInitialState = {
   error: false,
   lastUpdate: 0,
   light: false,
-  placeholderData: null
+  placeholderData: null,
+  lang: 'zh',
 }
 
 export default (exampleInitialState, action: Action) => {
@@ -50,6 +52,11 @@ export default (exampleInitialState, action: Action) => {
     case actionTypes.FAILURE:
       return state.merge({
         error: action.error,
+      })
+
+    case actionTypes.LANG:
+      return state.merge({
+        lang: action.lang,
       })
 
     default:

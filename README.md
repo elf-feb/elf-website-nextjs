@@ -19,3 +19,9 @@ yarn dev
 * hapijs
 * header
 * pm2.json
+
+## *intl 国际化 方案*
+
+> 参考其他方案:
+>
+> 1. next-i18next-example

@@ -18,7 +18,6 @@ class Index extends Component {
 
   render () {
     const { intl } = this.props
-
     return (
       <Layout>
         <Head>

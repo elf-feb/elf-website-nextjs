@@ -41,7 +41,6 @@ const getMessages = (locale) => {
 }
 
 const checkLocales = (req: any): string => {
-  debugger
   if (
     _.hasIn(req, 'headers.host') &&
     _.get(req, 'headers.host') !== '' &&
@@ -62,12 +61,7 @@ const checkLocales = (req: any): string => {
 
 app.prepare().then(() => {
   createServer((req, res) => {
-    // const accept = accepts(req)
-    // const locale = accept.language(accept.languages(supportedLanguages)) || 'en'
-
-    // 通过 host 判断 => 切换语言
-    const locale = checkLocales(req)
-    debugger
+    const locale = checkLocales(req) // 通过 host 判断 => 切换语言
     req.locale = locale
     req.localeDataScript = getLocaleDataScript(locale)
     req.messages = dev ? {} : getMessages(locale)

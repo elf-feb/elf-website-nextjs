@@ -1,4 +1,5 @@
 export const actionTypes = {
+  LANG: 'LANG',
   RESET: 'RESET',
   FAILURE: 'FAILURE',
   INCREMENT: 'INCREMENT',
@@ -32,4 +33,9 @@ export const failure = (error: any) => ({
 
 export const startClock = () => ({
   type: actionTypes.START_CLOCK,
+})
+
+export const changeLocale = (lang: string) => ({
+  type: actionTypes.LANG,
+  lang,
 })
