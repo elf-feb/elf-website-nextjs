@@ -10,16 +10,23 @@ const messages = defineMessages({
   }
 })
 
-export default injectIntl(({intl, title, children}) => (
+interface Props {
+  intl?: any,
+  title?: string,
+  children?: any,
+}
+
+export default injectIntl(({ intl, title, children }: Props) => (
   <div>
     <Head>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <title>{title || intl.formatMessage(messages.title)}</title>
     </Head>
+
     <header>
       <Nav />
     </header>
-    {children}
 
+    {children}
   </div>
 ))

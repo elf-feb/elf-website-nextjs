@@ -1,22 +1,60 @@
 /*
  * @Author: yanxiaodi 929213769@qq.com
- * @Date: 2018-12-07 23:04:32
+ * @Date: 2019-01-08 14:30:50
  * @LastEditors: yanxiaodi 929213769@qq.com
- * @LastEditTime: 2019-01-08 14:37:06
- * @Description: Class => Function
+ * @LastEditTime: 2019-01-10 19:51:24
+ * @Description:
  */
+import { connect } from 'react-redux'
 import React from 'react'
-import { increment, decrement, reset } from '@/saga/actions'
+import { Map } from 'immutable'
+import _ from 'lodash'
+
+import Counter from './Counter'
+import Clock from './Clock'
 
 interface Props {
-  count: number,
-  dispatch: Function,
+  title: string,
+  count?: number,
+  error?: boolean | any, // { message: string }
+  light?: boolean,
+  dispatch?: Function,
+  lastUpdate?: number,
+  placeholderData?: any,
 }
 
-export default ({ count, dispatch }: Props) =>
-  <div>
-    <h1> Count: <span>{count}</span> </h1>
-    <button onClick={() => dispatch(increment())}> +1 </button>
-    <button onClick={() => dispatch(decrement())}> -1 </button>
-    <button onClick={() => dispatch(reset())}> Reset </button>
-  </div>
+class Page extends React.Component<Props, any> {
+  render() {
+    const {
+      error,
+      title,
+      count,
+      light,
+      dispatch,
+      lastUpdate,
+      placeholderData,
+    } = this.props
+
+    return (
+      <div>
+        <h1>{title}</h1>
+        <Clock lastUpdate={lastUpdate} light={light} />
+        <Counter count={count} dispatch={dispatch} />
+
+        {!!placeholderData &&
+          <pre>
+            <code>
+              {JSON.stringify(placeholderData, null, 2)}
+            </code>
+          </pre>}
+
+        {!!error &&
+          <p style={{ color: 'red' }}>
+            Error: {error.message}
+          </p>}
+      </div>
+    )
+  }
+}
+
+export default connect((state: Map<any, any>) => state.toJS())(Page)

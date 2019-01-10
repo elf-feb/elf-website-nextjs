@@ -1,7 +1,7 @@
 // Polyfill Node with `Intl` that has data for all locales.
 // See: https://formatjs.io/guides/runtime-environments/#server
-const _ = require('lodash')
 const IntlPolyfill = require('intl')
+const _ = require('lodash')
 Intl.NumberFormat = IntlPolyfill.NumberFormat
 Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat
 
