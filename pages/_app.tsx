@@ -13,22 +13,25 @@ import checkLocales from '@/utils/checkLocales'
 import locale_en from 'react-intl/locale-data/en'
 import locale_fr from 'react-intl/locale-data/fr'
 import locale_zh from 'react-intl/locale-data/zh'
-// import locale_ja from 'react-intl/locale-data/ja'
+import locale_ja from 'react-intl/locale-data/ja'
 
 import messages_en from '../static/lang/en.json'
 import messages_fr from '../static/lang/fr.json'
 import messages_zh from '../static/lang/zh.json'
+import messages_ja from '../static/lang/ja.json'
 
 const messages = {
   en: messages_en,
   fr: messages_fr,
   zh: messages_zh,
+  ja: messages_ja,
 }
 
 addLocaleData([
   ...locale_en,
   ...locale_fr,
   ...locale_zh,
+  ...locale_ja,
 ])
 
 // Register React Intl's locale data for the user's locale in the browser. This

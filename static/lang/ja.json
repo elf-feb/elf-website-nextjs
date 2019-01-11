@@ -1,0 +1,7 @@
+{
+  "title": "nextjs多言語の例を反応させる",
+  "nav.home": "ホーム",
+  "nav.about": "について",
+  "description": "React IntlとNext.jsを統合するサンプルアプリケーション",
+  "greeting": "こんにちは"
+}

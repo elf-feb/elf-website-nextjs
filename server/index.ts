@@ -1,21 +1,28 @@
 // Polyfill Node with `Intl` that has data for all locales.
 // See: https://formatjs.io/guides/runtime-environments/#server
-const IntlPolyfill = require('intl')
 const _ = require('lodash')
-Intl.NumberFormat = IntlPolyfill.NumberFormat
-Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat
-
-const { readFileSync } = require('fs')
-const { basename } = require('path')
-const { createServer } = require('http')
-const accepts = require('accepts')
 const glob = require('glob')
 const next = require('next')
+const accepts = require('accepts')
+const IntlPolyfill = require('intl')
+const { basename } = require('path')
+const { readFileSync } = require('fs')
+const { createServer } = require('http')
+const { parse } = require('url')
 
 const port = parseInt(process.env.PORT, 10) || 3001
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
+
+Intl.NumberFormat = IntlPolyfill.NumberFormat
+Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat
+
+// Hapi Server
+const Hapi = require('hapi')
+const server = new Hapi.Server({
+  port
+})
 
 // 通过查找`lang /`dir中的翻译来获取支持的语言
 const supportedLanguages = glob.sync('../../static/lang/*.json').map((f) => basename(f, '.json'))
@@ -46,10 +53,6 @@ const checkLocales = (req: any): string => {
     _.get(req, 'headers.host') !== '' &&
     !dev
   ) {
-    console.log(
-      'locales ===> ',
-      _.get(req, 'headers.host'),
-    )
     const locales = _.get(req, 'headers.host')
     if (locales.indexOf('zh') !== -1) { return 'zh' }
     if (locales.indexOf('en') !== -1) { return 'en' }
@@ -59,15 +62,63 @@ const checkLocales = (req: any): string => {
   return 'en'
 }
 
-app.prepare().then(() => {
-  createServer((req, res) => {
-    const locale = checkLocales(req) // 通过 host 判断 => 切换语言
-    req.locale = locale
-    req.localeDataScript = getLocaleDataScript(locale)
-    req.messages = dev ? {} : getMessages(locale)
-    handle(req, res)
-  }).listen(port, (err) => {
-    if (err) throw err
-    console.log(`> Ready on http://localhost:${port}`)
+const pathWrapper = (app: any, pathName: string, opts?: any) => async ({ raw, query, params }) => {
+  const locale = checkLocales(raw.req) // 通过 host 判断 => 切换语言
+  const RAW = _.assign({}, raw, {
+    req: _.assign({}, raw.req, {
+      locale,
+      localeDataScript: getLocaleDataScript(locale),
+      messages: dev ? {} : getMessages(locale),
+    })
   })
-})
+  return app.renderToHTML(RAW.req, RAW.res, pathName, { ...query, ...params }, opts)
+}
+
+const nextHandlerWrapper = app => {
+  const handler = app.getRequestHandler()
+  return async ({ raw, url }, h) => {
+    await handler(raw.req, raw.res, url)
+    return h.close
+  }
+}
+
+const defaultHandlerWrapper = app => async ({ raw: { req, res }, url }) => {
+  const { pathname, query } = parse(url, true)
+  return app.renderToHTML(req, res, pathname, query)
+}
+
+app
+  .prepare()
+  .then(async () => {
+    server.route({
+      method: 'GET',
+      path: '/about',
+      handler: pathWrapper(app, '/about'),
+    })
+
+    server.route({
+      method: 'GET',
+      path: '/', /* catch all route */
+      handler: pathWrapper(app, '/'),
+    })
+
+    server.route({
+      method: 'GET',
+      path: '/_next/{p*}', /* next 特定的 routes */
+      handler: nextHandlerWrapper(app),
+    })
+
+    server.route({
+      method: 'GET',
+      path: '/{p*}', /* catch all route */
+      handler: pathWrapper(app, '/'),
+    })
+
+    try {
+      await server.start()
+      console.log(`> Ready on http://localhost:${port}`)
+    } catch (error) {
+      console.log('Error starting server')
+      console.log(error)
+    }
+  })

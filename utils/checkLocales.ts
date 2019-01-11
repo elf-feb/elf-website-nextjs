@@ -2,7 +2,7 @@
  * @Author: yanxiaodi 929213769@qq.com
  * @Date: 2019-01-06 00:13:49
  * @LastEditors: yanxiaodi 929213769@qq.com
- * @LastEditTime: 2019-01-10 16:51:41
+ * @LastEditTime: 2019-01-11 15:52:56
  * @Description: checkLocales.ts
  */
 import _ from 'lodash'
@@ -33,12 +33,11 @@ export default (param: any | string): string => {
       'checkLocales: locales ===> ',
       get(param, 'headers.host'),
     )
-
     const locales = get(param, 'headers.host')
     if (locales.indexOf('zh') !== -1) { return 'zh' }
     if (locales.indexOf('en') !== -1) { return 'en' }
     if (locales.indexOf('fr') !== -1) { return 'fr' }
-    if (locales.indexOf('jp') !== -1) { return 'ja' }
+    if (locales.indexOf('ja') !== -1) { return 'ja' }
   }
   return 'zh'
 }
