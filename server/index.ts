@@ -57,7 +57,7 @@ const checkLocales = (req: any): string => {
     if (locales.indexOf('zh') !== -1) { return 'zh' }
     if (locales.indexOf('en') !== -1) { return 'en' }
     if (locales.indexOf('fr') !== -1) { return 'fr' }
-    if (locales.indexOf('jp') !== -1) { return 'ja' }
+    if (locales.indexOf('ja') !== -1) { return 'ja' }
   }
   return 'en'
 }
