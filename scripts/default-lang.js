@@ -15,5 +15,5 @@ const defaultMessages = glob.sync('./static/lang/.messages/**/*.json')
     return messages
   }, {})
 
-writeFileSync('./static/lang/en.json', JSON.stringify(defaultMessages, null, 2))
-console.log(`> Wrote default messages to: "${resolve('./static/lang/en.json')}"`)
+writeFileSync('./static/lang/zh.json', JSON.stringify(defaultMessages, null, 2))
+console.log(`> Wrote default messages to: "${resolve('./static/lang/zh.json')}"`)

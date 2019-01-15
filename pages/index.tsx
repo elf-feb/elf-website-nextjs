@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import isNull from 'lodash/isNull'
 import { connect } from 'react-redux'
 import { FormattedMessage, FormattedNumber, injectIntl } from 'react-intl'
-import Layout from '../components/Layout'
+import styled from 'styled-components'
 
 import { InitProps } from 'types'
 import { loadData, startClock, tickClock } from '@/saga/actions'
+import Layout from '@/components/Layout'
 import Page from '@/components/Page'
 
 interface Props {
@@ -14,6 +15,12 @@ interface Props {
   simple: string,
   hello: string,
 }
+
+// styled
+const Title = styled.h1`
+  color: red;
+  font-size: 50px;
+`
 
 class Index extends Component<Props, {}> {
   static async getInitialProps({ store, isServer }: InitProps) {
@@ -31,6 +38,8 @@ class Index extends Component<Props, {}> {
   render() {
     return (
       <Layout>
+        <Title>Styled-components Title</Title>
+
         <p>
           <FormattedMessage
             id='greeting'

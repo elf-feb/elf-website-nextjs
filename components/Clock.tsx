@@ -17,7 +17,7 @@ interface Props {
 export default ({ lastUpdate, light }: Props) =>
   <div className={light ? 'light' : ''}>
     {format(new Date(lastUpdate))}
-    <style jsx>{`
+    {/* <style jsx>{`
         div {
           padding: 15px;
           display: inline-block;
@@ -28,5 +28,5 @@ export default ({ lastUpdate, light }: Props) =>
         .light {
           background-color: #999;
         }
-      `}</style>
+      `}</style> */}
   </div>

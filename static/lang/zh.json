@@ -1,7 +1,6 @@
 {
-  "title": "React nextjs 多语言 例子",
-  "nav.home": "主页",
-  "nav.about": "关于",
-  "description": "将React Intl与Next.js集成的示例应用程序",
-  "greeting": "你好 世界!"
+  "title": "React Intl Next.js Example",
+  "nav.home": "Home",
+  "nav.about": "About",
+  "greeting": "Hello, World!"
 }
