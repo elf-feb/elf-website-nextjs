@@ -2,20 +2,19 @@
  * @Author: yanxiaodi 929213769@qq.com
  * @Date: 2019-01-06 00:13:49
  * @LastEditors: yanxiaodi 929213769@qq.com
- * @LastEditTime: 2019-01-11 15:52:56
+ * @LastEditTime: 2019-01-15 18:10:14
  * @Description: checkLocales.ts
  */
-import _ from 'lodash'
 import get from 'lodash/get'
+import first from 'lodash/first'
+import split from 'lodash/split'
 import hasIn from 'lodash/hasIn'
+import isString from 'lodash/isString'
 
 export default (param: any | string): string => {
   // param === window.location.hostname
-  if (_.isString(param)) {
-    const urlLang = _.first(
-      _.split(param, '.', 3),
-    )
-
+  if (isString(param)) {
+    const urlLang = first(split(param, '.', 3))
     const lang = urlLang === 'en'
       ? 'en'
       : urlLang === 'fr'
@@ -23,7 +22,6 @@ export default (param: any | string): string => {
         : urlLang === 'ja'
           ? 'ja'
           : 'zh'
-
     return lang
   }
 
