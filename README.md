@@ -17,14 +17,15 @@ yarn dev
 ```
 
 ## TODO
-* saga ---> success
-* immutable ---> success
+* saga                    ---> success
+* immutable               ---> success
+* intl                    ---> sucess
+* md                      ---> sucess
+* hapijs                  ---> sucess
+* styled-components       ---> sucess
+* unit-test
 * env
-* md
-* intl
-* styled-components
 * fetch cancel requests
-* hapijs
 * header
 * pm2.json
 * try / catch & React Error Boundary
@@ -42,7 +43,7 @@ yarn dev
 127.0.0.1 	zh.website.com    # 中文
 127.0.0.1   en.website.com    # 英文
 127.0.0.1 	fr.website.com    # 法语
-127.0.0.1 	jp.website.com    # 日语 ()
+127.0.0.1 	ja.website.com    # 日语 ()
 127.0.0.1 	test.website.com  # 错误名称 => 改为 缺省值: 中文
 ```
 
