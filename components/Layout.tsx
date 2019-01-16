@@ -6,7 +6,7 @@ import Nav from './Nav'
 const messages = defineMessages({
   title: {
     id: 'title',
-    defaultMessage: 'React Intl Next.js Example'
+    defaultMessage: 'React Intl Next.js 案例'
   }
 })
 

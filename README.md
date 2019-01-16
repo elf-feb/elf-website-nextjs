@@ -36,6 +36,9 @@ yarn dev
 >
 > 1. next-i18next-example
 
+>
+> 修改 默认配置, 请修改两个文件 *server/index.ts* & *utils/checkLocales.ts* & *scripts/default-lang.js*
+
 测试 国际化, 请配置 **hosts** 文件
 
 ```bash

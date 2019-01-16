@@ -59,7 +59,7 @@ const checkLocales = (req: any): string => {
     if (locales.indexOf('fr') !== -1) { return 'fr' }
     if (locales.indexOf('ja') !== -1) { return 'ja' }
   }
-  return 'en'
+  return 'zh'
 }
 
 const pathWrapper = (app: any, pathName: string, opts?: any) => async ({ raw, query, params }) => {
