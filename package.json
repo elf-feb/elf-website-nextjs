@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "nodemon server/index.ts",
     "build": "next build && node ./scripts/default-lang && tsc --project tsconfig.server.json",
-    "start:prod": "NODE_ENV=production node --inspect .next/production-server"
+    "start:prod": "node --inspect .next/production-server"
   },
   "dependencies": {
     "@babel/core": "^7.2.2",
