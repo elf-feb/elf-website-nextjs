@@ -36,6 +36,11 @@ class Index extends Component<Props, {}> {
   }
 
   render() {
+    console.log(
+      'index 检查 env 环境 ===> ',
+      process.env.URL,
+    )
+
     return (
       <Layout>
         <Title>Styled-components Title</Title>
