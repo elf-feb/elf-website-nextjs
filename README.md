@@ -19,15 +19,15 @@ yarn dev
 ## TODO
 * saga                    ---> success
 * immutable               ---> success
-* intl                    ---> sucess
-* md                      ---> sucess
-* hapijs                  ---> sucess
-* styled-components       ---> sucess
+* intl                    ---> success
+* md                      ---> success
+* hapijs                  ---> success
+* styled-components       ---> success
+* env                     ---> success
+* pm2.json                ---> success
 * unit-test
-* env
 * fetch cancel requests
 * header
-* pm2.json
 * try / catch & React Error Boundary
 
 ## *intl 国际化 方案*
