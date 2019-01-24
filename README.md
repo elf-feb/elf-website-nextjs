@@ -25,7 +25,7 @@ yarn dev
 * styled-components       ---> success
 * env                     ---> success
 * pm2.json                ---> success
-* unit-test
+* unit-test               ---> success
 * fetch cancel requests
 * header
 * try / catch & React Error Boundary
@@ -51,6 +51,15 @@ yarn dev
 ```
 
 切换语言时, 请保留当前 路由信息, 然后 **硬跳转 (丢失 redux 信息; 重新初始化)**, 并提示用户 重新获取信息中
+
+***
+
+## 注意事项
+
+* 线上生产 请使用 **pm2** 的配置文件, 还有环境配置.
+* Jest 错误, 可以升级 三个相关配置修复 [网址](https://github.com/storybooks/storybook/issues/3897)
+
+***
 
 ## BUG list
 
